@@ -7,6 +7,32 @@ char *strcut(char *str, int len){
     return str;
 }
 
+char *strncut(char *str, int len, int n){
+    memmove(str, str + len, strlen(str) - len);
+    str[n] = '\0';
+    return str;
+}
+
+int ccount(char *str, char c){
+    int count = 0;
+    for(int i = 0; i < strlen(str); i++){
+        if(str[i] == c){
+            count++;
+        }
+    }
+    return count;
+}
+
+int cncount(char *str, char c, int n){
+    int count = 0;
+    for(int i = 0; i < strlen(str) && i < n; i++){
+        if(str[i] == c){
+            count++;
+        }
+    }
+    return count;
+}
+
 char *input(char *dest){
     int ds = sizeof(dest);
     int i = 0;
