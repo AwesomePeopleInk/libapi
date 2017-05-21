@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "text.h"
+#include "queue.h"
 
 #define __libapi_v "0.0.1"
 #define false 0

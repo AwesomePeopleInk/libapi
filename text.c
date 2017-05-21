@@ -33,14 +33,13 @@ int cncount(char *str, char c, int n){
     return count;
 }
 
-char *input(char *dest){
-    int ds = sizeof(dest);
+char *input(char *dest, size_t size){
     int i = 0;
     while(1){
         dest[i] = getchar();
-        if(i >= ds){
-            ds = sizeof(dest) + 20;
-            dest = realloc(si, ds);
+        if(i >= size){
+            size += 20;
+            dest = realloc(dest, size);
         }
         if(dest[i] == '\n'){
             dest[i] = '\0';
@@ -48,5 +47,27 @@ char *input(char *dest){
         }
         i++;
     }
+    return dest;
+}
+
+char *finput(char *dest, FILE* file, size_t size){
+    int i = 0;
+    char c;
+    if(file == NULL){
+        return NULL;
+    }
+    while((c = fgetc(file)) != EOF){
+        dest[i] = c;
+        if(i >= size){
+            size += 20;
+            dest = realloc(dest, size);
+        }
+        if(dest[i] == EOF){
+            dest[i] = '\0';
+            break;
+        }
+        i++;
+    }
+    dest[i] = '\0';
     return dest;
 }
